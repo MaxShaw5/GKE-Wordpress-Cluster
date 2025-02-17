@@ -6,10 +6,9 @@ metadata:
   labels:
     app: {{ .Values.labels.lb.app }}
 spec:
-  ports:
-    - port: {{ .Values.ports.servicePort }}
-      nodePort: {{ .Values.ports.nodePort }}
-      targetPort: {{ .Values.ports.targetPort }}
+  ports: 
+   {{- toYaml .Values.ports.http | nindent 2 }}
+   {{- toYaml .Values.ports.https | nindent 2 }}
   selector:
     app: {{ .Values.labels.app }}
   type: {{ .Values.service.wordpress.type }}
@@ -37,6 +36,8 @@ metadata:
     app: {{ .Values.labels.app }}
   name: {{ .Values.metadata.wordpress.name }}
 spec:
+  affinity:
+    {{- toYaml .Values.affinity.wordpress | nindent 4 }}
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
