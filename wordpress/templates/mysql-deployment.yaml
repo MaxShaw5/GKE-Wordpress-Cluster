@@ -9,7 +9,7 @@ spec:
     - port: {{ .Values.ports.sqlport }}
   selector:
     app: {{ .Values.labels.sql.app }}
-  clusterIP: None
+  type: ClusterIP
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
