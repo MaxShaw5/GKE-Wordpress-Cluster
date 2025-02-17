@@ -100,7 +100,7 @@ env:
         key: password
   wordpress:
     - name: WORDPRESS_DB_HOST
-      value: wordpress-mysql
+      value: wordpress-mysql.default.svc.cluster.local:3306
     - name: WORDPRESS_DB_PASSWORD
       valueFrom:
         secretKeyRef:
