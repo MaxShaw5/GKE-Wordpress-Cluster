@@ -36,8 +36,6 @@ metadata:
     app: {{ .Values.labels.app }}
   name: {{ .Values.metadata.wordpress.name }}
 spec:
-  affinity:
-    {{- toYaml .Values.affinity.wordpress | nindent 4 }}
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
@@ -49,6 +47,8 @@ spec:
       labels:
         app: {{ .Values.labels.app }}
     spec:
+      affinity:
+    {{- toYaml .Values.affinity.wordpress | nindent 8 }}
       containers:
       - image: {{ .Values.containers.wordpress.image }}
         name: {{ .Values.containers.wordpress.name }}
