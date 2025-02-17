@@ -39,13 +39,11 @@ ports:
   http:
     - name: http
       port: 80
-      nodePort: 30005
       targetPort: 8080
   sqlport: 3306
   https:
     - name: https
       port: 443
-      nodePort: 30010
       targetPort: 8080
   containerPort: 8080
 
