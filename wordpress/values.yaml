@@ -25,12 +25,15 @@ affinity:
   wordpress:
     podAntiAffinity:
       preferredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-              - key: app
-                operator: In
-                values:
-                - wp-app
+      - weight: 100
+        podAffinityTerm:
+          labelSelector:
+            matchExpressions:
+            - key: app
+              operator: In
+              values:
+              - wp-app
+          topologyKey: topology.kubernetes.io/region
 
 ports:
   http:
