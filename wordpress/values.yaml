@@ -39,12 +39,12 @@ ports:
   http:
     - name: http
       port: 80
-      targetPort: 8080
+      targetPort: 80
   sqlport: 3306
   https:
     - name: https
       port: 443
-      targetPort: 8080
+      targetPort: 80
   containerPort: 80
 
 containers:
