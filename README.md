@@ -54,12 +54,12 @@ spec:
     nodePort: 31770
     port: 80
     protocol: TCP
-    targetPort: 8080
+    targetPort: 80
   - name: https
     nodePort: 31388
     port: 443
     protocol: TCP
-    targetPort: 8080
+    targetPort: 80
   selector:
     app.kubernetes.io/name: argocd-server
   sessionAffinity: None
@@ -82,3 +82,10 @@ This allowed traffic to flow into the LoadBalancer and for it to serve up the Ar
 Heres a screenshot:
 
 ![image](https://github.com/user-attachments/assets/8bc42e8f-ae70-4527-8020-b83c5d972478)
+
+
+## Changing the Wordpress and SQL Deployments to work better in the cloud
+
+I added podAntiAffinity to make sure that my WordPress pods would schedule on different nodes to increase my site's availability, added a targetPort to the SQL deployment matching the port value, and spent 6 hours troubleshooting why my WordPress site couldn't get access to my SQL database (I literally just deleted the secret and recreated it with the CLI instead of a YAML - no idea why this worked as opposed to the YAML) 
+
+Now that I can get to my WordPress setup page over the internet, I need to make sure it's only serving up traffic through HTTPS.
