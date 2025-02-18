@@ -70,7 +70,6 @@ spec:
       containers:
       - image: {{ .Values.containers.wordpress.image }}
         name: {{ .Values.containers.wordpress.name }}
-        {{- toYaml .Values.probes | nindent 8 }}
         env:
           {{- toYaml .Values.env.wordpress | nindent 8 }}
         resources: {}
