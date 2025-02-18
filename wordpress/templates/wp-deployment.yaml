@@ -18,7 +18,7 @@ kind: Ingress
 metadata:
   name: wordpress-ingress
   annotations:
-    kubernetes.io/ingress.class: "gce"
+    kubernetes.io/ingress.class: gce
     cert-manager.io/issuer: letsencrypt-staging
     kubernetes.io/ingress.allow-http: "true"
     kubernetes.io/ingress.global-static-ip-name: web-ip
@@ -29,7 +29,7 @@ spec:
       port:
         number: 80
   tls:
-    - secretName: web-ssl-nw5nf
+    - secretName: web-ssl
       hosts:
         - maxshaw.us
 ---
