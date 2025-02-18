@@ -29,7 +29,7 @@ spec:
       port:
         number: 80
   tls:
-    - secretName: web-ssl
+    - secretName: web-ssl-nw5nf
       hosts:
         - maxshaw.us
 ---
