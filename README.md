@@ -12,11 +12,9 @@ This repo will be a bit of a "sister repo" that handles the GKE aspect of the pr
 
 First things first, I created a cluster in the GCP console by simply using the GUI to make a 2 node cluster with 1 node in each zone (us-central1-b and us-central1-c) with a machine type of e2 small to keep costs down.
 
-I then started a cloud shell in the cluster so that I could clone my original Git Repo (linked above) into the cluster so that I could install my Helm chart onto the nodes.
-
 ## ArgoCD Setup in GKE
 
-Before I did a ```helm install wordpress``` I wanted to make sure I got ArgoCD up and running so that I could manage the continuous deployment of cluster resources on my GKE cluster. I installed ArgoCD with the command available on the Argo docs ```kubectl apply -k https://github.com/argoproj/argo-cd/manifests/crds\?ref\=stable```
+I wanted to make sure I got ArgoCD up and running so that I could manage the continuous deployment of cluster resources on my GKE cluster. I installed ArgoCD with the command available on the Argo docs ```kubectl apply -k https://github.com/argoproj/argo-cd/manifests/crds\?ref\=stable```
 
 After getting it all installed onto my nodes, I needed to change the argocd-server service over to a LoadBalancer so I could make it available externally. This was done by editing the service through the CLI with ```kubectl edit service -n argocd argocd-server```
 
@@ -86,6 +84,6 @@ Heres a screenshot:
 
 ## Changing the Wordpress and SQL Deployments to work better in the cloud
 
-I added podAntiAffinity to make sure that my WordPress pods would schedule on different nodes to increase my site's availability, added a targetPort to the SQL deployment matching the port value, and spent 6 hours troubleshooting why my WordPress site couldn't get access to my SQL database (I literally just deleted the secret and recreated it with the CLI instead of a YAML - no idea why this worked as opposed to the YAML) 
+I added podAntiAffinity to make sure that my WordPress pods would schedule on different nodes to increase my site's availability, added a targetPort to the SQL deployment matching the port value and recreated my sql password secret with command line using a "from-literal" flag instead of using a YAML.
 
 Now that I can get to my WordPress setup page over the internet, I need to make sure it's only serving up traffic through HTTPS.
