@@ -2,7 +2,7 @@
 
 This repo will build off my previous project for a local network cluster by expanding the scope to make the website available over the internet using GKE
 
-# For Information Regarding The Helm Charts and YAMLs used for the Actual Wordpress Install See the Link Below
+## To see the original / local network version of this project see the repo below
 
 https://github.com/MaxShaw5/k3s-wordpress-home-lab
 
