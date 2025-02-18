@@ -19,12 +19,18 @@ metadata:
   name: wordpress-ingress
   annotations:
     kubernetes.io/ingress.class: "gce"
+    cert-manager.io/issuer: letsencrypt-staging
+    kubernetes.io/ingress.allow-http: "true"
 spec:
   defaultBackend:
     service:
       name: wordpress
       port:
         number: 80
+  tls:
+    - secretName: web-ssl
+      hosts:
+        - maxshaw.us
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
