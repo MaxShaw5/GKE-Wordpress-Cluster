@@ -17,7 +17,7 @@ nodeLabels:
 labels:
   app: wp-app
   lb:
-    app: wordpress-lb
+    app: wp-app
   sql:
     app: wp-sql
 
@@ -39,13 +39,13 @@ ports:
   http:
     - name: http
       port: 80
-      targetPort: 443
+      targetPort: 80
   sqlport: 3306
   https:
     - name: https
       port: 443
-      targetPort: 443
-  containerPort: 443
+      targetPort: 80
+  containerPort: 80
 
 containers:
   wordpress:
@@ -114,4 +114,4 @@ requests:
 
 service:
   wordpress:
-    type: LoadBalancer
+    type: NodePort
