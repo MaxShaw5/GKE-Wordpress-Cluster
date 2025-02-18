@@ -33,7 +33,7 @@ affinity:
               operator: In
               values:
               - wp-app
-          topologyKey: topology.kubernetes.io/region
+          topologyKey: topology.kubernetes.io/zone
 
 ports:
   http:
