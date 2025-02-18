@@ -28,11 +28,8 @@ affinity:
       - weight: 100
         podAffinityTerm:
           labelSelector:
-            matchExpressions:
-            - key: app
-              operator: In
-              values:
-              - wp-app
+            matchLabels:
+              app: wp-app
           topologyKey: kubernetes.io/hostname
 
 ports:
