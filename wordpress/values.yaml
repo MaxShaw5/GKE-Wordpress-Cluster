@@ -39,13 +39,13 @@ ports:
   http:
     - name: http
       port: 80
-      targetPort: 80
+      targetPort: 443
   sqlport: 3306
   https:
     - name: https
       port: 443
-      targetPort: 80
-  containerPort: 80
+      targetPort: 443
+  containerPort: 443
 
 containers:
   wordpress:
