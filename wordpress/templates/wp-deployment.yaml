@@ -4,7 +4,7 @@ metadata:
   name: wordpress-cert
 spec:
   domains:
-    - maxshaw.online
+    - maxshaw.us
 ---
 apiVersion: v1
 kind: Service
@@ -30,7 +30,7 @@ metadata:
     kubernetes.io/ingress.class: "gce"
 spec:
   rules:
-  - host: maxshaw.online
+  - host: maxshaw.us
     http:
       paths:
       - path: /*
@@ -42,7 +42,7 @@ spec:
               number: 80
   tls:
   - hosts:
-    - maxshaw.online
+    - maxshaw.us
     secretName: wordpress-tls
 ---
 apiVersion: v1
