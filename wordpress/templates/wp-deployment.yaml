@@ -26,8 +26,6 @@ spec:
   defaultBackend:
     service:
       name: wordpress
-      port:
-        number: 80
   tls:
     - secretName: web-ssl
       hosts:
