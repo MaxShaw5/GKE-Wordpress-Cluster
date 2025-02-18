@@ -17,7 +17,7 @@ nodeLabels:
 labels:
   app: wp-app
   lb:
-    app: wp-app
+    app: wp-np
   sql:
     app: wp-sql
 
