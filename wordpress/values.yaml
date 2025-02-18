@@ -21,16 +21,25 @@ labels:
   sql:
     app: wp-sql
 
-affinity:
-  wordpress:
-    podAntiAffinity:
-      preferredDuringSchedulingIgnoredDuringExecution:
-      - weight: 100
-        podAffinityTerm:
-          labelSelector:
-            matchLabels:
-              app: wp-app
-          topologyKey: kubernetes.io/hostname
+topologySpread:
+  topologySpreadConstraints:
+  - maxSkew: 1
+    topologyKey: kubernetes.io/hostname
+    whenUnsatisfiable: DoNotSchedule # Strict rules
+    labelSelector:
+      matchLabels:
+        app: wp-app
+
+# affinity:
+#   wordpress:
+#     podAntiAffinity:
+#       preferredDuringSchedulingIgnoredDuringExecution:
+#       - weight: 100
+#         podAffinityTerm:
+#           labelSelector:
+#             matchLabels:
+#               app: wp-app
+#           topologyKey: kubernetes.io/hostname
 
 ports:
   http:

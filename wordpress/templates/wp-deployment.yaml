@@ -47,8 +47,7 @@ spec:
       labels:
         app: {{ .Values.labels.app }}
     spec:
-      affinity:
-    {{- toYaml .Values.affinity.wordpress | nindent 8 }}
+    {{- toYaml .Values.topologySpread | nindent 6 }}
       containers:
       - image: {{ .Values.containers.wordpress.image }}
         name: {{ .Values.containers.wordpress.name }}
