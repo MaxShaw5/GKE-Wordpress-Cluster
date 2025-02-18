@@ -21,6 +21,7 @@ metadata:
     kubernetes.io/ingress.class: "gce"
     cert-manager.io/issuer: letsencrypt-staging
     kubernetes.io/ingress.allow-http: "true"
+    kubernetes.io/ingress.global-static-ip-name: web-ip
 spec:
   defaultBackend:
     service:

@@ -114,4 +114,4 @@ requests:
 
 service:
   wordpress:
-    type: NodePort
+    type: ClusterIP
