@@ -17,7 +17,7 @@ nodeLabels:
 labels:
   app: wp-app
   lb:
-    app: wp-np
+    app: wordpress-lb
   sql:
     app: wp-sql
 
@@ -34,27 +34,6 @@ affinity:
               values:
               - wp-app
           topologyKey: topology.kubernetes.io/region
-
-probes:
-  readinessProbe:
-    httpGet:
-      path: /actuator/health
-      port: 8080
-    initialDelaySeconds: 30
-    periodSeconds: 5
-  livenessProbe:
-    httpGet:
-      path: /actuator/health
-      port: 8080
-    initialDelaySeconds: 30
-    periodSeconds: 5
-  startupProbe:
-    httpGet:
-      path: /actuator/health
-      port: 8080
-    initialDelaySeconds: 30
-    failureThreshold: 0
-    periodSeconds: 10
 
 ports:
   http:
@@ -135,4 +114,4 @@ requests:
 
 service:
   wordpress:
-    type: ClusterIP
+    type: LoadBalancer
