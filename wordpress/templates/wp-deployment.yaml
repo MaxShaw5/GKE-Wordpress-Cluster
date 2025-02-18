@@ -19,7 +19,6 @@ metadata:
   name: wordpress-ingress
   annotations:
     kubernetes.io/ingress.class: "gce"
-    kubernetes.io/ingress.global-static-ip-name: web-ip
 spec:
   defaultBackend:
     service:
