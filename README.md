@@ -86,6 +86,31 @@ Heres a screenshot:
 
 I added podAntiAffinity to make sure that my WordPress pods would schedule on different nodes to increase my site's availability, added a targetPort to the SQL deployment matching the port value and recreated my sql password secret with command line using a "from-literal" flag instead of using a YAML.
 
-In the future, I want to set this site up so that it's only serving traffic over HTTPS. For now though, you can visit the site at: maxshaw.us
+I also changed my service from a NodePort service in the local set up to a LoadBalancer service and added ports for HTTPS and HTTP like so:
+
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: wordpress
+  labels:
+    app: wordpress-lb
+spec:
+  ports:
+  - name: http
+    port: 80
+    targetPort: 80
+  - name: https
+    port: 443
+    targetPort: 80
+  selector:
+    app: wp-app
+  type: LoadBalancer
+  status: {}
+```
+
+From there, my site was serving over HTTP and HTTPS with Google automatically issuing certificates for the HTTPS side.
+
+In the future, I want to set this site up so that it's only serving traffic over HTTPS. For now though, you can visit the site [here].(maxshaw.us)
 
 Thanks!
