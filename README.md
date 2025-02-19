@@ -10,7 +10,8 @@ Architecture like this showcases how "easy" it is for Cloud Engineers to take a 
 
 In the case that I have to shut down the site due to the costs of keeping it running here's a screenshot to suspend it in time and make me remember the good times I had making it.
 
-![image](https://github.com/user-attachments/assets/08e5262b-5d46-47ce-8cdc-dfe39fe87e84)
+![image](https://github.com/user-attachments/assets/f302a35f-437c-4308-9d10-149410d1a711)
+
 
 ## Challenges Faced
 
