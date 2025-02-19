@@ -111,6 +111,6 @@ spec:
 
 From there, my site was serving over HTTP and HTTPS with Google automatically issuing certificates for the HTTPS side.
 
-In the future, I want to set this site up so that it's only serving traffic over HTTPS. For now though, you can visit the site [here](maxshaw.us)
+In the future, I want to set this site up so that it's only serving traffic over HTTPS. For now though, you can visit the site [here](https://maxshaw.us)
 
 Thanks!
