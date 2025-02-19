@@ -1,6 +1,26 @@
 # GKE-Wordpress-Cluster
 
-This repo will build off my previous project for a local network cluster by expanding the scope to make the website available over the internet using GKE
+This repo will build off my previous project for a local network cluster by expanding the scope to make the website available over the internet using Google Kubernetes Engine.
+
+Visit my site [here](https://maxshaw.us).
+
+I chose to host this in GKE because I think it's important for me to comprehend the benefit of being able to easily deploy things that are highly available and scalable in minutes. 
+
+Architecture like this showcases how "easy" it is for Cloud Engineers to take a pre built software image that Engineers/Developers have created and make it available in a way that provides resilience and can handle whatever traffic is thrown at it.
+
+In the case that I have to shut down the site due to the costs of keeping it running here's a screenshot to suspend it in time and make me remember the good times I had making it.
+
+![image](https://github.com/user-attachments/assets/08e5262b-5d46-47ce-8cdc-dfe39fe87e84)
+
+## Challenges Faced
+
+Getting this site deployed through GKE provided a number of challenges and debugging trials and tribulations.
+
+I originally wanted this site to use certificates from cert-manager through letsencrpyt as the issuer. This caused my backend load balancers in GKE to break continuously. In the commit history you can see the various ways I tried to implement this and failed. I kept having issues with my ingress' backend load balancer failing into an unhealthy state.
+
+This was eventually solved by opting to let Google handle certificates on it's own. In this case, it was easier to take what's given instead of trying to implement another unnecessary layer.
+
+I initially had an issue with my SQL database not connecting to my WordPress pods. This was solved by deleting the secret I created through a manifest and recreating it on the command line with a ```--from-literal=``` flag. 
 
 ## To see the original / local network version of this project see the repo below
 
@@ -36,7 +56,7 @@ metadata:
   name: argocd-server
   namespace: argocd
   resourceVersion: "111647"
-  uid: 29328df0-a2cc-463f-bff3-a57ef900c95c
+  uid: redacted
 spec:
   allocateLoadBalancerNodePorts: true
   clusterIP: redacted
@@ -65,7 +85,7 @@ spec:
 status:
   loadBalancer:
     ingress:
-    - ip: 34.172.27.223
+    - ip: redacted
       ipMode: VIP
 ```
 
@@ -109,8 +129,11 @@ spec:
   status: {}
 ```
 
+I then created an A record in my DNS settings in CloudFlare (my domain provider) to point my root domain (maxshaw.us) to my load balancer's external IP address found with ```kubectl get svc -n default``` 
+
 From there, my site was serving over HTTP and HTTPS with Google automatically issuing certificates for the HTTPS side.
 
-In the future, I want to set this site up so that it's only serving traffic over HTTPS. For now though, you can visit the site [here](https://maxshaw.us)
+
+
 
 Thanks!
