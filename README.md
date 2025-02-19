@@ -86,4 +86,6 @@ Heres a screenshot:
 
 I added podAntiAffinity to make sure that my WordPress pods would schedule on different nodes to increase my site's availability, added a targetPort to the SQL deployment matching the port value and recreated my sql password secret with command line using a "from-literal" flag instead of using a YAML.
 
-Now that I can get to my WordPress setup page over the internet, I need to make sure it's only serving up traffic through HTTPS.
+In the future, I want to set this site up so that it's only serving traffic over HTTPS. For now though, you can visit the site at: maxshaw.us
+
+Thanks!
